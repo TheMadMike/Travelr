@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Gate implements Runnable {
+public class Gateway implements Runnable {
     private ServerSocket socket;
     private boolean running;
 
-    public Gate(int port) throws IOException {
+    public Gateway(int port) throws IOException {
         socket = new ServerSocket(port);
     }
 

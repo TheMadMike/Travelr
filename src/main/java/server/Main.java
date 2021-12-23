@@ -4,18 +4,18 @@ import java.io.IOException;
 
 public class Main {
 
-    private static int port = 55555;
-    private static Gate gate;
+    private final static int PORT = 55555;
+    private static Gateway gateway;
 
     static {
         try {
-            gate = new Gate(port);
+            gateway = new Gateway(PORT);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        gate.run();
+        gateway.run();
     }
 }
