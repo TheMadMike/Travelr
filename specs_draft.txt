@@ -12,12 +12,12 @@ GET /office/tours
 
 response:
 
-OK
+OK <number of lines to read>
 <expected data in csv>
 ...
 
 or:
-ERROR
+ERROR <number of lines to read>
 <server error message>
 
 ----------
