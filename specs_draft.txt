@@ -24,3 +24,42 @@ ERROR <number of lines to read>
 
 2 response types: OK, ERROR
 
+----------
+
+* Endpoints: *
+
+GET /tours/all
+
+GET /tours/by_id <id>
+
+GET /tours/by_name <name>
+
+SET /tour/guide <id>
+
+SET /tour/tourist <id>
+
+UPDATE /tours/new <name>, <description>, <departure date>, <max number of tourists>, <number of tourists>
+
+UPDATE /tours/change <id>, <name>, <description>, <departure date>, <max number of tourists>, <number of tourists>
+
+REMOVE /tours/by_id <id>
+
+REMOVE /tours/tourist <id>
+
+***
+
+GET /tourists/all
+
+GET /tourists/by_id <id>
+
+SET /tourists/new <name>
+
+REMOVE /tourist/tourist
+
+***
+
+GET /guides/all
+
+GET /guides/by_id <id>
+
+REMOVE /guides/by_id <id>
