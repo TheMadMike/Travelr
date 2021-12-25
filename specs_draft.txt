@@ -1,0 +1,26 @@
+http-like request types: GET, SET, REMOVE, UPDATE
+
+GET /controller/endpoint <body>
+
+path format: /<controller id(string)>/<controller method id(string)>
+
+-----------
+
+example:
+
+GET /office/tours
+
+response:
+
+OK
+<expected data in csv>
+...
+
+or:
+ERROR
+<server error message>
+
+----------
+
+2 response types: OK, ERROR
+

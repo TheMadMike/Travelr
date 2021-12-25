@@ -1,5 +1,7 @@
 package server;
 
+import server.util.Logger;
+
 import java.io.IOException;
 
 public class Main {
@@ -10,6 +12,7 @@ public class Main {
     static {
         try {
             gateway = new Gateway(PORT);
+            Logger.info("Listening on port " + PORT + "...");
         } catch (IOException exception) {
             exception.printStackTrace();
         }
