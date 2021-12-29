@@ -9,6 +9,10 @@ public class Response {
         this.rawStringResponse = rawStringResponse;
     }
 
+    public Response(String rawStringResponse) {
+        this(Type.OK, rawStringResponse);
+    }
+
     public enum Type {
         OK,
         ERROR

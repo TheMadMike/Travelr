@@ -27,15 +27,19 @@ public abstract class Controller {
 
         String endpointKey = request.getType().getString() + " " + request.getEndpointName();
         if(!endpoints.containsKey(endpointKey)) {
-            respond(new Response(Response.Type.ERROR, "Not found"));
+            respond(Response.Type.ERROR, "Not found");
             return;
         }
 
         endpoints.get(endpointKey).run();
     }
 
-    protected void respond(Response response) {
-        out.println(response.toString());
+    protected void respond(Response.Type type, String rawStringResponse) {
+        out.println(new Response(type, rawStringResponse));
+    }
+
+    protected void respond(String rawStringResponse) {
+        respond(Response.Type.OK, rawStringResponse);
     }
 
 

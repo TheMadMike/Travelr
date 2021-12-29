@@ -1,5 +1,6 @@
 package server;
 
+import server.controller.TourController;
 import server.util.*;
 
 import java.io.BufferedReader;
@@ -21,9 +22,6 @@ public class Gateway implements Runnable {
         registerControllers();
     }
 
-    private void registerControllers() {
-    }
-
     @Override
     public void run() {
         running = true;
@@ -31,6 +29,15 @@ public class Gateway implements Runnable {
         while(running) {
             listenForRequests();
         }
+    }
+
+    public void stop() throws IOException {
+        running = false;
+        socket.close();
+    }
+
+    private void registerControllers() {
+        controllers.put("tours", new TourController());
     }
 
     private void listenForRequests() {
@@ -61,11 +68,9 @@ public class Gateway implements Runnable {
             var out = new PrintWriter(client.getOutputStream(), true);
             out.println("ERROR 1");
             out.println(e.getMessage());
+        } finally {
+            client.close();
         }
 
-    }
-
-    public void stop() {
-        running = false;
     }
 }
