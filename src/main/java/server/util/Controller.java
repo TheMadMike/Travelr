@@ -42,5 +42,8 @@ public abstract class Controller {
         respond(Response.Type.OK, rawStringResponse);
     }
 
+    protected void ok() {
+        respond("");
+    }
 
 }
