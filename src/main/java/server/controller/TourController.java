@@ -25,6 +25,8 @@ public class TourController extends Controller {
         endpoints.put("UPDATE new", this::createNew);
         endpoints.put("SET guide", this::assignGuide);
         endpoints.put("GET details", this::getDetails);
+        endpoints.put("SET tourist", this::registerForTour);
+        endpoints.put("REMOVE tourist", this::unregisterForTour);
     }
 
     // GET /tours/all
@@ -51,6 +53,7 @@ public class TourController extends Controller {
             tour = tourService.getById(id);
         } catch(RuntimeException exception) {
             respond(Response.Type.ERROR, exception.getMessage()+"\n");
+            return;
         }
 
         respond(tour.toCsv() + "\n");
@@ -63,6 +66,7 @@ public class TourController extends Controller {
 
         if(tokens.size() != 4) {
             respond(Response.Type.ERROR, "Invalid number of arguments\n");
+            return;
         }
 
         String name = tokens.get(0);
@@ -82,6 +86,7 @@ public class TourController extends Controller {
 
         if(tokens.size() != 2) {
             respond(Response.Type.ERROR, "Invalid number of arguments\n");
+            return;
         }
 
         int tourId = Integer.parseInt(tokens.get(0));
@@ -117,4 +122,34 @@ public class TourController extends Controller {
         respond(buffer.toString());
     }
 
+    // SET /tours/tourist <tour id>, <tourist name>
+    private void registerForTour() {
+        List<String> tokens = CsvParser.parse(rawRequestBodyBuffer);
+
+        if(tokens.size() != 2) {
+            respond(Response.Type.ERROR, "Invalid number of arguments\n");
+            return;
+        }
+
+        tourService.registerForTour(Integer.parseInt(tokens.get(0)), tokens.get(1));
+
+        ok();
+    }
+
+    // REMOVE /tours/tourist <tour id>, <tourist name>
+    private void unregisterForTour() {
+        List<String> tokens = CsvParser.parse(rawRequestBodyBuffer);
+
+        if(tokens.size() != 2) {
+            respond(Response.Type.ERROR, "Invalid number of arguments\n");
+            return;
+        }
+
+        int tourId = Integer.parseInt(tokens.get(0));
+        String touristName = tokens.get(1);
+
+        tourService.unregisterForTour(Integer.parseInt(tokens.get(0)), tokens.get(1));
+
+        ok();
+    }
 }

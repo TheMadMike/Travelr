@@ -69,4 +69,16 @@ public class TourService {
         Tour tour = getById(tourId);
         return guideService.getByIdList(tour.getGuideIds());
     }
+
+    public void registerForTour(int tourId, String touristName) throws RuntimeException {
+        Tour tour = getById(tourId);
+        tour.getTourists().add(touristName);
+        toursRepository.update(findIndex(tourId), tour);
+    }
+
+    public void unregisterForTour(int tourId, String touristName) throws RuntimeException {
+        Tour tour = getById(tourId);
+        tour.getTourists().remove(touristName);
+        toursRepository.update(findIndex(tourId), tour);
+    }
 }
