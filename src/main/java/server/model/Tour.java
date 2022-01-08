@@ -9,7 +9,7 @@ public class Tour implements Serializable {
     private String name, description;
     private LocalDate departureDate;
     private int id, maxTourists;
-    private List<Integer> touristIds = new ArrayList<>();
+    private List<String> tourists = new ArrayList<>();
     private List<Integer> guideIds = new ArrayList<>();
 
     public Tour(int id, String name, String description, LocalDate departureDate, int maxTourists) {
@@ -64,8 +64,8 @@ public class Tour implements Serializable {
         this.id = id;
     }
 
-    public List<Integer> getTouristIds() {
-        return touristIds;
+    public List<String> getTourists() {
+        return tourists;
     }
 
     public List<Integer> getGuideIds() {
@@ -78,6 +78,6 @@ public class Tour implements Serializable {
                 + description + ", "
                 + departureDate.toString() + ", "
                 + maxTourists + ", "
-                + touristIds.size();
+                + tourists.size();
     }
 }
