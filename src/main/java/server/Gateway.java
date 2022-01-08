@@ -1,5 +1,6 @@
 package server;
 
+import server.controller.GuideController;
 import server.controller.TourController;
 import server.util.*;
 
@@ -38,6 +39,7 @@ public class Gateway implements Runnable {
 
     private void registerControllers() {
         controllers.put("tours", new TourController());
+        controllers.put("guides", new GuideController());
     }
 
     private void listenForRequests() {
